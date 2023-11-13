@@ -34,8 +34,10 @@ const SignUp = () => {
           <img src={img} alt="" />
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          <form onSubmit={handleSignUp} className="card-body">
-            <h1 className="text-3xl text-center font-bold">Sign Up</h1>
+        <div className="card-body">
+        <h1 className="text-3xl text-center font-bold">Sign Up</h1>
+          <form onSubmit={handleSignUp}>
+            
 
             <div className="form-control">
               <label className="label">
@@ -91,6 +93,7 @@ const SignUp = () => {
                Login
             </Link>
           </p>
+        </div>
         </div>
       </div>
     </div>

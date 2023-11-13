@@ -10,6 +10,7 @@ import img6 from "../../../assets/images/banner/6.jpg";
 const Banner = () => {
   return (
     <div className="carousel w-full h-[600px]">
+
       <div id="slide1" className="carousel-item relative w-full">
         <img
           src={img1}
@@ -76,7 +77,7 @@ const Banner = () => {
           </div>
         </div>
 
-        />
+     
         <div className="absolute flex justify-end transform -translate-y-1/2 left-5 right-5 bottom-0">
           <a href="#slide2" className="btn btn-circle mr-5">
             ❮
@@ -102,7 +103,7 @@ const Banner = () => {
           </div>
         </div>
 
-        />
+        
         <div className="absolute flex justify-end transform -translate-y-1/2 left-5 right-5 bottom-0">
           <a href="#slide3" className="btn btn-circle mr-5">
             ❮
@@ -129,7 +130,7 @@ const Banner = () => {
           </div>
         </div>
 
-        />
+        
         <div className="absolute flex justify-end transform -translate-y-1/2 left-5 right-5 bottom-0">
           <a href="#slide4" className="btn btn-circle mr-5">
             ❮
@@ -156,7 +157,7 @@ const Banner = () => {
           </div>
         </div>
 
-        />
+      
         <div className="absolute flex justify-end transform -translate-y-1/2 left-5 right-5 bottom-0">
           <a href="#slide5" className="btn btn-circle mr-5">
             ❮
@@ -166,6 +167,7 @@ const Banner = () => {
           </a>
         </div>
       </div>
+      
     </div>
   );
 };

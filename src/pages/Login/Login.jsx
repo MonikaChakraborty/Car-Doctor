@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import img from "../../assets/images/login/login.svg";
-import { useContext } from "react";
-import { AuthContext } from "../../providers/AuthProvider";
+import useAuth from "../../hooks/useAuth";
+// import { useContext } from "react";
+// import { AuthContext } from "../../providers/AuthProvider";
 
 const Login = () => {
-
-    const {signIn} = useContext(AuthContext);
+  const {signIn} = useAuth();
+  // const { signIn } = useContext(AuthContext);
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -13,17 +14,16 @@ const Login = () => {
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
-
+    console.log(name, email, password);
     signIn(email, password)
-    .then(result => {
+      .then((result) => {
         const user = result.user;
         console.log(user);
-    })
-    .catch(console.log(error));
-
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
-
 
   return (
     <div className="hero min-h-screen bg-base-200">
@@ -32,10 +32,12 @@ const Login = () => {
           <img src={img} alt="" />
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          <form onSubmit={handleLogin} className="card-body">
-            <h1 className="text-3xl text-center font-bold">Login</h1>
+        <h1 className="text-3xl text-center font-bold">Login</h1>
+          <div className="card-body">
+          <form onSubmit={handleLogin}>
+            
 
-            <form className="form-control">
+            <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
               </label>
@@ -46,7 +48,7 @@ const Login = () => {
                 className="input input-bordered"
                 required
               />
-            </form>
+            </div>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Confirm Password</span>
@@ -65,7 +67,11 @@ const Login = () => {
               </label>
             </div>
             <div className="form-control mt-6">
-              <input className="btn bg-[#FF3811] hover:bg-[#c42100] text-white" type="submit" value="Login" />
+              <input
+                className="btn bg-[#FF3811] hover:bg-[#c42100] text-white"
+                type="submit"
+                value="Login"
+              />
             </div>
           </form>
 
@@ -75,6 +81,7 @@ const Login = () => {
               Sign Up
             </Link>
           </p>
+          </div>
         </div>
       </div>
     </div>
