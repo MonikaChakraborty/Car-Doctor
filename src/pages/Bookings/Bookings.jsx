@@ -8,42 +8,36 @@ const Bookings = () => {
   const [bookings, setBookings] = useState([]);
   const axiosSecure = useAxiosSecure();
 
-  // const url = `http://localhost:5000/bookings?email=${user.email}`;
-
+  // const url = `https://car-doctor-server-pink-pi.vercel.app/bookings?email=${user.email}`;
 
   const url = `/bookings?email=${user.email}`;
-
 
   useEffect(() => {
     // fetch(url, {credentials: 'include'})
     //   .then((res) => res.json())
     //   .then((data) => setBookings(data));
 
-    axiosSecure.get(url)
-    .then(res => setBookings(res.data))
-
+    axiosSecure.get(url).then((res) => setBookings(res.data));
   }, [url, axiosSecure]);
 
+  const handleDelete = (id) => {
+    const proceed = confirm("Are you sure you want to delete?");
+    if (proceed) {
+      fetch(`https://car-doctor-server-pink-pi.vercel.app/bookings/${id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.deletedCount > 0) {
+            alert("Deleted Successfully");
+            const remaining = bookings.filter((booking) => booking._id !== id);
 
-
-  const handleDelete = id => {
-    const proceed = confirm('Are you sure you want to delete?');
-    if(proceed){
-        fetch(`http://localhost:5000/bookings/${id}`, {
-            method: 'DELETE'
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            if(data.deletedCount > 0){
-                alert('Deleted Successfully');
-                const remaining = bookings.filter(booking => booking._id !== id);
-
-                setBookings(remaining);
-            }
-        })
+            setBookings(remaining);
+          }
+        });
     }
-  } 
+  };
 
   return (
     <div className="mb-20 mt-20">
@@ -67,23 +61,16 @@ const Bookings = () => {
             </tr>
           </thead>
           <tbody>
-
-            {
-                bookings.map(booking => <BookingRow key={booking._id} booking={booking} handleDelete={handleDelete}></BookingRow>)
-            }          
-           
+            {bookings.map((booking) => (
+              <BookingRow
+                key={booking._id}
+                booking={booking}
+                handleDelete={handleDelete}
+              ></BookingRow>
+            ))}
           </tbody>
 
-          {/* foot */}
-          {/* <tfoot>
-            <tr>
-              <th></th>
-              <th>Name</th>
-              <th>Job</th>
-              <th>Favorite Color</th>
-              <th></th>
-            </tr>
-          </tfoot> */}
+          
         </table>
       </div>
     </div>
